@@ -1,11 +1,103 @@
 .authPage {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  padding: 20px;
+  justify-content: flex-end;
+  padding: 40px;
   font-family: var(--font-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.authPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80') center/cover;
+  z-index: -1;
+}
+
+.authPage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.topLeftSection {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+}
+
+.logo {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px;
+  display: flex;
+  align-items: baseline;
+  font-weight: 800;
+  font-size: 48px;
+  margin-bottom: 40px;
+  position: relative;
+  left: 0;
+}
+
+.imgLogo {
+  width: 110px;
+  position: relative;
+  top: 35px;
+  left: 5px;
+}
+
+.logoTech { color: rgb(201, 199, 199); }
+.logoFactors { color: var(--accent); }
+
+.logoInc { 
+  color: white;
+  -webkit-text-stroke: .5px black;
+}
+
+.tagline {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.bottomLeftSection {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  gap: 40px;
+  max-width: 600px;
+}
+
+.missionVision {
+  flex: 1;
+}
+
+.missionVision h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.missionVision p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
 }
 
 .authCard {
@@ -218,4 +310,78 @@
 
 .link:hover {
   text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .authPage {
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .topLeftSection {
+    position: static;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    margin: 0 auto;
+  }
+
+  .bottomLeftSection {
+    position: static;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+    max-width: 100%;
+  }
+
+  .missionVision h3 {
+    font-size: 14px;
+  }
+
+  .missionVision p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .authPage {
+    padding: 20px 16px;
+  }
+
+  .authCard {
+    padding: 32px 24px;
+  }
+
+  .topLeftSection {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .bottomLeftSection {
+    margin-top: 32px;
+  }
+
+  .missionVision h3 {
+    font-size: 13px;
+  }
+
+  .missionVision p {
+    font-size: 11px;
+  }
 }

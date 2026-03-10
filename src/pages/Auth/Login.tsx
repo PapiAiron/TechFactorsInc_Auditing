@@ -28,16 +28,20 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.authPage}>
-      <div className={styles.authCard}>      
-        <div className={styles.header}>
-
-        <div  className={styles.logo}>
+      {/* Top Left Section - Logo and Tagline */}
+      <div className={styles.topLeftSection}>
+        <div className={styles.logo}>
           <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
           <span className={styles.logoTech}>tech</span>
           <span className={styles.logoFactors}>Factors</span>
           <span className={styles.logoInc}>Inc</span>
         </div>
+        <p className={styles.tagline}>Making Learning a Great Experience</p>
+      </div>
 
+      {/* Right Side - Auth Card */}
+      <div className={styles.authCard}>      
+        <div className={styles.header}>
           <h1 className={styles.title}>Welcome Back</h1>
           <p className={styles.subtitle}>Enter your credentials to access your dashboard</p>
         </div>
@@ -91,6 +95,18 @@ const Login: React.FC = () => {
         <p className={styles.footerText}>
           Don't have an account? <Link to="/register" className={styles.link}>Create one now</Link>
         </p>
+      </div>
+
+      {/* Bottom Left Section - Mission and Vision */}
+      <div className={styles.bottomLeftSection}>
+        <div className={styles.missionVision}>
+          <h3>Mission</h3>
+          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
+        </div>
+        <div className={styles.missionVision}>
+          <h3>Vision</h3>
+          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
+        </div>
       </div>
     </div>
   );
