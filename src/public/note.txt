@@ -1,0 +1,1 @@
+npm install firebase lucide-react motion react-router-dom @zxing/library @google/genai
