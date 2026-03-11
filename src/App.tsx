@@ -10,6 +10,7 @@ import PageTransition from './components/UI/PageTransition';
 
 const App: React.FC = () => {
   const [isNewAuditModalOpen, setIsNewAuditModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -29,9 +30,15 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.app}>
-      <Sidebar />
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => setIsSidebarOpen(false)}
+      />
       <div className={styles.main}>
-        <Topbar onNewAudit={() => setIsNewAuditModalOpen(true)} />
+        <Topbar 
+          onNewAudit={() => setIsNewAuditModalOpen(true)} 
+          onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
         <main className={styles.content}>
           <PageTransition>
             <Outlet />

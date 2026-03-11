@@ -20,7 +20,12 @@ import { useAlerts } from '../../hooks/useAlerts';
 import { useAuditLogs } from '../../hooks/useAuditLogs';
 import { useAuth } from '../../context/AuthContext';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
   const { assets } = useAssets();
   const { criticalCount } = useAlerts();
   const { logs } = useAuditLogs();
@@ -33,6 +38,12 @@ const Sidebar: React.FC = () => {
   const handleLogout = async () => {
     await logout();
     navigate('/landing');
+  };
+
+  const handleNavLinkClick = () => {
+    if (onClose) {
+      onClose();
+    }
   };
 
   const navGroups = [
@@ -57,7 +68,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (    
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <div  className={styles.logo}>
         <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
         <span className={styles.logoTech}>tech</span>
@@ -75,6 +86,7 @@ const Sidebar: React.FC = () => {
                   <NavLink 
                     to={item.path} 
                     className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+                    onClick={handleNavLinkClick}
                   >
                     <span className={styles.icon}>{item.icon}</span>
                     <span className={styles.label}>{item.label}</span>
@@ -95,11 +107,11 @@ const Sidebar: React.FC = () => {
       <div className={styles.userSection}>
         {showUserMenu && (
           <div className={styles.userMenu}>
-            <button className={styles.menuItem} onClick={() => { navigate('/settings'); setShowUserMenu(false); }}>
+            <button className={styles.menuItem} onClick={() => { navigate('/settings'); setShowUserMenu(false); handleNavLinkClick(); }}>
               <UserIcon size={16} />
               <span>Account Settings</span>
             </button>
-            <button className={`${styles.menuItem} ${styles.logoutBtn}`} onClick={handleLogout}>
+            <button className={`${styles.menuItem} ${styles.logoutBtn}`} onClick={() => { handleLogout(); handleNavLinkClick(); }}>
               <LogOut size={16} />
               <span>Sign Out</span>
             </button>

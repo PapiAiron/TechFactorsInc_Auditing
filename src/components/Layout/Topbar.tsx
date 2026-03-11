@@ -1,14 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Search, Bell, Download, Plus } from 'lucide-react';
+import { Search, Bell, Download, Plus, Menu } from 'lucide-react';
 import styles from './Topbar.module.css';
 import { useAlerts } from '../../hooks/useAlerts';
 
 interface TopbarProps {
   onNewAudit?: () => void;
+  onMenuClick?: () => void;
 }
 
-const Topbar: React.FC<TopbarProps> = ({ onNewAudit }) => {
+const Topbar: React.FC<TopbarProps> = ({ onNewAudit, onMenuClick }) => {
   const location = useLocation();
   const { alerts } = useAlerts();
   
@@ -31,6 +32,9 @@ const Topbar: React.FC<TopbarProps> = ({ onNewAudit }) => {
   return (
     <header className={styles.topbar}>
       <div className={styles.left}>
+        <button className={styles.menuBtn} onClick={onMenuClick} title="Menu">
+          <Menu size={20} />
+        </button>
         <h1 className={styles.title}>{getPageTitle()}</h1>
       </div>
 
