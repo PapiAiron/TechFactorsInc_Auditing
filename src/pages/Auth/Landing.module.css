@@ -5,6 +5,22 @@
   display: flex;
   flex-direction: column;
   font-family: var(--font-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.landing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80') center/cover;
+  background-attachment: fixed;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.3;
 }
 
 .header {
@@ -14,10 +30,16 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 .logo {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 23px;
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
@@ -30,12 +52,12 @@
   left: 10px;
 }
 
-.logoTech { color: rgb(201, 199, 199); }
+.logoTech { color: var(--muted); }
 .logoFactors { color: var(--accent); }
 
 .logoInc { 
-  color: white;
-   -webkit-text-stroke: .5px black;
+  color: var(--text);
+  -webkit-text-stroke: .5px var(--border);
  }
 
 .authButtons {
@@ -47,11 +69,16 @@
   padding: 10px 24px;
   font-weight: 600;
   color: var(--text);
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loginBtn:hover {
   color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .registerBtn {
@@ -60,12 +87,17 @@
   color: var(--bg);
   border-radius: 8px;
   font-weight: 700;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .registerBtn:hover {
   background: var(--muted);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .main {
@@ -83,9 +115,9 @@
 }
 
 .heroTitle {
-  font-size: 72px;
+  font-size: clamp(48px, 8vw, 72px);
   line-height: 1.1;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 24px;
   letter-spacing: -2px;
 }
@@ -95,7 +127,7 @@
 }
 
 .heroSubtitle {
-  font-size: 20px;
+  font-size: clamp(16px, 3vw, 20px);
   color: var(--muted);
   max-width: 600px;
   margin: 0 auto 48px;
@@ -106,6 +138,7 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .getStartedBtn {
@@ -118,13 +151,15 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(234, 88, 12, 0.3);
+  height: 48px;
+  min-height: 44px;
 }
 
 .getStartedBtn:hover {
   background: #d94e0b;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 15px 30px rgba(234, 88, 12, 0.4);
 }
 
@@ -136,16 +171,20 @@
   border-radius: 12px;
   font-size: 18px;
   font-weight: 600;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  height: 48px;
+  min-height: 44px;
 }
 
 .demoBtn:hover {
   background: var(--surface2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .features {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   width: 100%;
   max-width: 1200px;
@@ -157,13 +196,16 @@
   padding: 40px;
   border-radius: 24px;
   text-align: left;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .featureCard:hover {
   background: var(--surface2);
   border-color: var(--accent);
   transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .featureIcon {
@@ -176,6 +218,11 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover .featureIcon {
+  transform: scale(1.1);
 }
 
 .featureCard h3 {
@@ -195,4 +242,102 @@
   text-align: center;
   color: var(--muted2);
   font-size: 14px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .header {
+    padding: 0 15px;
+    height: 70px;
+  }
+
+  .logo {
+    font-size: 18px;
+    bottom: 15px;
+  }
+
+  .imgLogo {
+    width: 55px;
+    top: 20px;
+  }
+
+  .authButtons {
+    gap: 12px;
+  }
+
+  .loginBtn,
+  .registerBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .main {
+    padding: 60px 15px;
+  }
+
+  .hero {
+    margin-bottom: 60px;
+  }
+
+  .heroTitle {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+
+  .ctaGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .getStartedBtn,
+  .demoBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .featureCard {
+    padding: 32px 24px;
+  }
+
+  .featureIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .featureCard h3 {
+    font-size: 18px;
+  }
+
+  .featureCard p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .authButtons {
+    gap: 8px;
+  }
+
+  .loginBtn,
+  .registerBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }

@@ -28,12 +28,19 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <div className={styles.authPage}>
+      {/* Top Left Section - Logo and Tagline */}
+      <div className={styles.topLeftSection}>
+        <div className={styles.logo}>
+          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
+          <span className={styles.logoTech}>tech</span>
+          <span className={styles.logoFactors}>Factors</span>
+          <span className={styles.logoInc}>Inc</span>
+        </div>
+        <p className={styles.tagline}>Making Learning a Great Experience</p>
+      </div>
+
       <div className={styles.authCard}>
         <div className={styles.header}>
-          <div className={styles.logo}>
-            <span className={styles.logoTech}>tech</span>
-            <span className={styles.logoFactors}>Factors</span>
-          </div>
           <h1 className={styles.title}>Reset Password</h1>
           <p className={styles.subtitle}>Enter your email to receive a password reset link</p>
         </div>

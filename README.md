@@ -1,4 +1,4 @@
-# Tech Factors Inc. Auditing System
+# tech Factors Inc. Auditing System
 
 A modern, web-based auditing and asset management system designed for Tech Factors Inc. This application provides comprehensive features for asset tracking, audit management, user administration, and real-time alerts.
 

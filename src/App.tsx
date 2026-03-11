@@ -6,6 +6,7 @@ import styles from './App.module.css';
 import NewAuditModal from './pages/AuditLogs/NewAuditModal';
 import { useAuth } from './context/AuthContext';
 import LoadingSpinner from './components/UI/LoadingSpinner';
+import PageTransition from './components/UI/PageTransition';
 
 const App: React.FC = () => {
   const [isNewAuditModalOpen, setIsNewAuditModalOpen] = useState(false);
@@ -32,7 +33,9 @@ const App: React.FC = () => {
       <div className={styles.main}>
         <Topbar onNewAudit={() => setIsNewAuditModalOpen(true)} />
         <main className={styles.content}>
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
       </div>
 
