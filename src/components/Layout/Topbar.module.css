@@ -30,7 +30,7 @@
 }
 
 .title {
-  font-size: 10px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text);
 }
@@ -39,6 +39,11 @@
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
 }
 
 .searchWrapper {

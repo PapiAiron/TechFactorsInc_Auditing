@@ -75,6 +75,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .cardTitle {
@@ -84,15 +86,16 @@
 }
 
 .saveBtn {
-  height: 36px;
-  padding: 0 16px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 20px;
   background: var(--accent);
   color: white;
   border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.2s;
 }
@@ -127,7 +130,9 @@
 
 .input {
   width: 100%;
-  padding: 10px 12px;
+  height: 48px;
+  min-height: 48px;
+  padding: 10px 16px;
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 14px;
@@ -151,7 +156,7 @@
 }
 
 .themeBtn {
-  padding: 6px 16px;
+  padding: 10px 20px;
   font-size: 13px;
   font-weight: 600;
   border-radius: 6px;
@@ -195,6 +200,7 @@
   color: white;
   font-weight: 700;
   font-size: 24px;
+  flex-shrink: 0;
 }
 
 .profileInfo h3 {
@@ -212,4 +218,107 @@
   font-size: 12px;
   color: var(--muted2);
   margin-top: 4px;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+  }
+
+  .subnav {
+    gap: 2px;
+  }
+
+  .navItem {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .cardBody {
+    padding: 20px;
+  }
+}
+
+/* Mobile (< 767px) */
+@media (max-width: 767px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .subnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .navItem {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .navItem span {
+    display: none;
+  }
+
+  .seedBtn {
+    display: none;
+  }
+
+  .cardHeader {
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .saveBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cardBody {
+    padding: 16px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .profileAvatar {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+
+  .themeToggle {
+    width: 100%;
+  }
+
+  .themeBtn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .toggleList {
+    gap: 16px;
+  }
 }

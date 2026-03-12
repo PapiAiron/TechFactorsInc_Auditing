@@ -24,6 +24,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .tabs {
@@ -32,12 +34,13 @@
 }
 
 .tab {
-  padding: 6px 16px;
+  padding: 8px 16px;
   font-size: 13px;
   font-weight: 600;
   border-radius: 8px;
   color: var(--muted2);
   transition: all 0.2s;
+  min-height: 40px;
 }
 
 .tab:hover {
@@ -51,9 +54,10 @@
 }
 
 .iconBtn {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,12 +98,14 @@
 }
 
 .severityIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .severityIcon.critical { background: var(--red-glow); color: var(--red); }
@@ -108,13 +114,15 @@
 
 .alertContent {
   flex: 1;
+  min-width: 0;
 }
 
 .alertHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 8px;
+  gap: 12px;
 }
 
 .alertTitle {
@@ -134,6 +142,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .alertTime {
@@ -155,20 +164,140 @@
 .resolveBtn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  height: 36px;
-  padding: 0 16px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--muted2);
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .resolveBtn:hover {
   background: var(--green-glow);
   color: var(--green);
   border-color: var(--green);
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .statsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .tableHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tabs {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+}
+
+/* Mobile (< 767px) */
+@media (max-width: 767px) {
+  .container {
+    gap: 20px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .tableHeader {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .tabs {
+    width: 100%;
+  }
+
+  .tab {
+    padding: 10px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .alertList {
+    gap: 0;
+  }
+
+  .alertItem {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    margin: 8px;
+    border-radius: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Glassmorphism tint based on severity */
+  .alertItem:first-child:has(.severityIcon.critical) {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, var(--glass-bg) 100%);
+  }
+
+  .alertItem:first-child:has(.severityIcon.warning) {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, var(--glass-bg) 100%);
+  }
+
+  .alertItem:first-child:has(.severityIcon.info) {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, var(--glass-bg) 100%);
+  }
+
+  .alertItem:hover {
+    background: var(--glass-bg);
+  }
+
+  .alertHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .alertTitle {
+    font-size: 16px;
+  }
+
+  .alertDescription {
+    font-size: 13px;
+  }
+
+  .alertFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Full-width action button on mobile */
+  .resolveBtn {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .severityIcon {
+    width: 48px;
+    height: 48px;
+  }
 }

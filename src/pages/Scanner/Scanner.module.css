@@ -51,6 +51,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .cardTitle {
@@ -65,11 +67,12 @@
 }
 
 .lookupInput {
-  height: 36px;
-  padding: 0 12px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 13px;
+  border-radius: 8px;
+  font-size: 14px;
   background: var(--bg);
   color: var(--text);
   width: 180px;
@@ -86,6 +89,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .title {
@@ -100,13 +105,15 @@
 }
 
 .finishBtn {
-  height: 44px;
+  height: 48px;
+  min-height: 48px;
   padding: 0 20px;
   background: var(--accent);
   color: white;
   border-radius: 12px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-weight: 700;
   font-size: 14px;
@@ -121,15 +128,17 @@
 }
 
 .lookupBtn {
-  height: 36px;
-  padding: 0 12px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 13px;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text);
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .lookupBtn:hover {
@@ -139,4 +148,71 @@
 
 .viewportWrapper {
   padding: 20px;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .leftCol, .rightCol {
+    gap: 24px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Mobile (< 767px) */
+@media (max-width: 767px) {
+  .container {
+    gap: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .finishBtn {
+    width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .mainGrid {
+    gap: 20px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lookupForm {
+    flex-direction: column;
+  }
+
+  .lookupInput {
+    width: 100%;
+  }
+
+  .lookupBtn {
+    width: 100%;
+  }
+
+  .viewportWrapper {
+    padding: 12px;
+  }
 }

@@ -70,33 +70,35 @@ const Assets: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.filters}>
-          <div className={styles.searchBox}>
-            <Search size={18} className={styles.searchIcon} />
-            <input 
-              type="text" 
-              placeholder="Search by name, tag, or category..." 
-              className={styles.searchInput}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          <div className={styles.categoryFilters}>
-            <button 
-              className={`${styles.filterBtn} ${selectedCategory === 'All' ? styles.active : ''}`}
-              onClick={() => setSelectedCategory('All')}
-            >
-              All
-            </button>
-            {CATEGORIES.map(cat => (
+          <div className={styles.searchAndFilters}>
+            <div className={styles.searchBox}>
+              <Search size={18} className={styles.searchIcon} />
+              <input 
+                type="text" 
+                placeholder="Search by name, tag, or category..." 
+                className={styles.searchInput}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            <div className={styles.categoryFilters}>
               <button 
-                key={cat}
-                className={`${styles.filterBtn} ${selectedCategory === cat ? styles.active : ''}`}
-                onClick={() => setSelectedCategory(cat)}
+                className={`${styles.filterBtn} ${selectedCategory === 'All' ? styles.active : ''}`}
+                onClick={() => setSelectedCategory('All')}
               >
-                {cat}
+                All
               </button>
-            ))}
+              {CATEGORIES.map(cat => (
+                <button 
+                  key={cat}
+                  className={`${styles.filterBtn} ${selectedCategory === cat ? styles.active : ''}`}
+                  onClick={() => setSelectedCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

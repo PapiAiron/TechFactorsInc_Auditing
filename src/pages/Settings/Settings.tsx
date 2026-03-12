@@ -7,10 +7,12 @@ import {
   Save, 
   Database,
   CheckCircle2,
-  User as UserIcon
+  User as UserIcon,
+  Info
 } from 'lucide-react';
 import Toggle from '../../components/UI/Toggle';
 import LoadingSpinner from '../../components/UI/LoadingSpinner';
+import About from './About';
 import styles from './Settings.module.css';
 import { useSettings } from '../../hooks/useSettings';
 import { useAuth } from '../../context/AuthContext';
@@ -67,6 +69,7 @@ const Settings: React.FC = () => {
   };
 
   const tabs = [
+    { id: 'About', icon: <Info size={18} /> },
     { id: 'Account', icon: <UserIcon size={18} /> },
     { id: 'General', icon: <SettingsIcon size={18} /> },
     { id: 'Notifications', icon: <Bell size={18} /> },
@@ -98,16 +101,19 @@ const Settings: React.FC = () => {
         </aside>
 
         <main className={styles.content}>
-          <div className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h2 className={styles.cardTitle}>{activeTab} Settings</h2>
-              <button className={styles.saveBtn} onClick={handleSave}>
-                {saveSuccess ? <CheckCircle2 size={18} /> : <Save size={18} />}
-                <span>{saveSuccess ? 'Saved!' : 'Save Changes'}</span>
-              </button>
-            </div>
+          {activeTab === 'About' ? (
+            <About />
+          ) : (
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <h2 className={styles.cardTitle}>{activeTab} Settings</h2>
+                <button className={styles.saveBtn} onClick={handleSave}>
+                  {saveSuccess ? <CheckCircle2 size={18} /> : <Save size={18} />}
+                  <span>{saveSuccess ? 'Saved!' : 'Save Changes'}</span>
+                </button>
+              </div>
 
-            <div className={styles.cardBody}>
+              <div className={styles.cardBody}>
               {activeTab === 'Account' && (
                 <div className={styles.form}>
                   <div className={styles.profileHeader}>
@@ -290,6 +296,7 @@ const Settings: React.FC = () => {
               )}
             </div>
           </div>
+          )}
         </main>
       </div>
     </div>

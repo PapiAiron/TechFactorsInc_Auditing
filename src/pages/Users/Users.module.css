@@ -8,6 +8,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .title {
@@ -23,13 +25,15 @@
 }
 
 .addBtn {
-  height: 40px;
+  height: 48px;
+  min-width: 48px;
   padding: 0 20px;
   background: var(--accent);
   color: white;
   border-radius: 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
@@ -47,6 +51,7 @@
   gap: 24px;
 }
 
+/* Card Styles */
 .card {
   background: var(--surface);
   border-radius: 11px;
@@ -80,6 +85,7 @@
   font-weight: 700;
   font-size: 18px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .statusDot {
@@ -99,6 +105,7 @@
 
 .userInfo {
   flex: 1;
+  min-width: 0;
 }
 
 .userName {
@@ -129,6 +136,7 @@
 
 .infoIcon {
   color: var(--muted);
+  flex-shrink: 0;
 }
 
 .statsRow {
@@ -172,15 +180,88 @@
   align-items: center;
   padding-top: 16px;
   border-top: 1px solid var(--border);
+  gap: 12px;
 }
 
 .editBtn {
+  height: 40px;
+  min-height: 40px;
+  padding: 0 16px;
   font-size: 13px;
   font-weight: 600;
   color: var(--accent);
+  border-radius: 8px;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editBtn:hover {
-  color: #d94e0b;
+  background: var(--accent-glow);
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Mobile (< 767px) */
+@media (max-width: 767px) {
+  .container {
+    gap: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .addBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 16px;
+    gap: 16px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+  }
+
+  .userInfo {
+    width: calc(100% - 64px);
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .editBtn {
+    width: 100%;
+  }
 }
