@@ -21,6 +21,7 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import PageTransition from './components/UI/PageTransition';
+import AuthLayout from './components/UI/AuthLayout';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -39,9 +40,11 @@ createRoot(document.getElementById('root')!).render(
               <Route path="settings" element={<Settings />} />
             </Route>
             <Route path="/landing" element={<PageTransition><Landing /></PageTransition>} />
-            <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
-            <Route path="/register" element={<PageTransition><Register /></PageTransition>} />
-            <Route path="/forgot-password" element={<PageTransition><ForgotPassword /></PageTransition>} />
+            <Route path="/" element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

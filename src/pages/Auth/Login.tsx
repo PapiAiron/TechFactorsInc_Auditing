@@ -27,87 +27,61 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles.authPage}>
-      {/* Top Left Section - Logo and Tagline */}
-      <div className={styles.topLeftSection}>
-        <div className={styles.logo}>
-          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
-          <span className={styles.logoTech}>tech</span>
-          <span className={styles.logoFactors}>Factors</span>
-          <span className={styles.logoInc}>Inc</span>
-        </div>
-        <p className={styles.tagline}>Making Learning a Great Experience</p>
+    <div className={styles.authCard}>      
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome Back</h1>
+        <p className={styles.subtitle}>Enter your credentials to access your dashboard</p>
       </div>
 
-      {/* Right Side - Auth Card */}
-      <div className={styles.authCard}>      
-        <div className={styles.header}>
-          <h1 className={styles.title}>Welcome Back</h1>
-          <p className={styles.subtitle}>Enter your credentials to access your dashboard</p>
+      {error && (
+        <div className={styles.errorBox}>
+          <AlertCircle size={18} />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.field}>
+          <label className={styles.label}>Email Address</label>
+          <div className={styles.inputWrapper}>
+            <Mail className={styles.inputIcon} size={18} />
+            <input 
+              type="email" 
+              className={styles.input} 
+              placeholder="name@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
         </div>
 
-        {error && (
-          <div className={styles.errorBox}>
-            <AlertCircle size={18} />
-            <span>{error}</span>
+        <div className={styles.field}>
+          <div className={styles.labelRow}>
+            <label className={styles.label}>Password</label>
+            <Link to="/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
           </div>
-        )}
-
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.field}>
-            <label className={styles.label}>Email Address</label>
-            <div className={styles.inputWrapper}>
-              <Mail className={styles.inputIcon} size={18} />
-              <input 
-                type="email" 
-                className={styles.input} 
-                placeholder="name@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+          <div className={styles.inputWrapper}>
+            <Lock className={styles.inputIcon} size={18} />
+            <input 
+              type="password" 
+              className={styles.input} 
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-
-          <div className={styles.field}>
-            <div className={styles.labelRow}>
-              <label className={styles.label}>Password</label>
-              <Link to="/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
-            </div>
-            <div className={styles.inputWrapper}>
-              <Lock className={styles.inputIcon} size={18} />
-              <input 
-                type="password" 
-                className={styles.input} 
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-
-          <button type="submit" className={styles.submitBtn} disabled={loading}>
-            {loading ? <Loader2 className={styles.spin} size={20} /> : 'Sign In'}
-          </button>
-        </form>
-
-        <p className={styles.footerText}>
-          Don't have an account? <Link to="/register" className={styles.link}>Create one now</Link>
-        </p>
-      </div>
-
-      {/* Bottom Left Section - Mission and Vision */}
-      <div className={styles.bottomLeftSection}>
-        <div className={styles.missionVision}>
-          <h3>Mission</h3>
-          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
         </div>
-        <div className={styles.missionVision}>
-          <h3>Vision</h3>
-          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
-        </div>
-      </div>
+
+        <button type="submit" className={styles.submitBtn} disabled={loading}>
+          {loading ? <Loader2 className={styles.spin} size={20} /> : 'Sign In'}
+        </button>
+      </form>
+
+      <p className={styles.footerText}>
+        Don't have an account? <Link to="/register" className={styles.link}>Create one now</Link>
+      </p>
     </div>
   );
 };

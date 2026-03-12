@@ -27,74 +27,61 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <div className={styles.authPage}>
-      {/* Top Left Section - Logo and Tagline */}
-      <div className={styles.topLeftSection}>
-        <div className={styles.logo}>
-          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
-          <span className={styles.logoTech}>tech</span>
-          <span className={styles.logoFactors}>Factors</span>
-          <span className={styles.logoInc}>Inc</span>
-        </div>
-        <p className={styles.tagline}>Making Learning a Great Experience</p>
+    <div className={styles.authCard}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Reset Password</h1>
+        <p className={styles.subtitle}>Enter your email to receive a password reset link</p>
       </div>
 
-      <div className={styles.authCard}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>Reset Password</h1>
-          <p className={styles.subtitle}>Enter your email to receive a password reset link</p>
+      {error && (
+        <div className={styles.errorBox}>
+          <AlertCircle size={18} />
+          <span>{error}</span>
         </div>
+      )}
 
-        {error && (
-          <div className={styles.errorBox}>
-            <AlertCircle size={18} />
-            <span>{error}</span>
-          </div>
-        )}
+      {success && (
+        <div className={styles.successBox}>
+          <CheckCircle2 size={18} />
+          <span>Reset link sent! Please check your inbox.</span>
+        </div>
+      )}
 
-        {success && (
-          <div className={styles.successBox}>
-            <CheckCircle2 size={18} />
-            <span>Reset link sent! Please check your inbox.</span>
-          </div>
-        )}
-
-        {!success ? (
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.field}>
-              <label className={styles.label}>Email Address</label>
-              <div className={styles.inputWrapper}>
-                <Mail className={styles.inputIcon} size={18} />
-                <input 
-                  type="email" 
-                  className={styles.input} 
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
+      {!success ? (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.field}>
+            <label className={styles.label}>Email Address</label>
+            <div className={styles.inputWrapper}>
+              <Mail className={styles.inputIcon} size={18} />
+              <input 
+                type="email" 
+                className={styles.input} 
+                placeholder="name@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
-
-            <button type="submit" className={styles.submitBtn} disabled={loading}>
-              {loading ? <Loader2 className={styles.spin} size={20} /> : 'Send Reset Link'}
-            </button>
-          </form>
-        ) : (
-          <div className={styles.successActions}>
-            <Link to="/login" className={styles.backToLoginBtn}>
-              <ArrowLeft size={18} />
-              <span>Back to Login</span>
-            </Link>
           </div>
-        )}
 
-        {!success && (
-          <p className={styles.footerText}>
-            Remembered your password? <Link to="/login" className={styles.link}>Sign In</Link>
-          </p>
-        )}
-      </div>
+          <button type="submit" className={styles.submitBtn} disabled={loading}>
+            {loading ? <Loader2 className={styles.spin} size={20} /> : 'Send Reset Link'}
+          </button>
+        </form>
+      ) : (
+        <div className={styles.successActions}>
+          <Link to="/login" className={styles.backToLoginBtn}>
+            <ArrowLeft size={18} />
+            <span>Back to Login</span>
+          </Link>
+        </div>
+      )}
+
+      {!success && (
+        <p className={styles.footerText}>
+          Remembered your password? <Link to="/login" className={styles.link}>Sign In</Link>
+        </p>
+      )}
     </div>
   );
 };

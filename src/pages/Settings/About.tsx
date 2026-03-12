@@ -9,7 +9,7 @@ const About: React.FC = () => {
         <div className={styles.header}>
           <div className={styles.logoWrapper}>
             <img 
-              src="/img/logo.png" 
+              src="/src/public/img/logo.png" 
               alt="techFactors Logo" 
               className={styles.logo}
             />
@@ -25,9 +25,9 @@ const About: React.FC = () => {
               Our Purpose
             </h2>
             <p className={styles.bodyText}>
-              techFactors is dedicated to bridging the gap between technology and practical learning. 
-              Our platform is designed to streamline the management of educational resources, student 
-              progress, and technical modules—making learning a great experience for everyone.
+              techFactors Inc. is dedicated to empowering organizations with cutting-edge IT asset management solutions. 
+              Our platform streamlines the tracking, auditing, and management of technological resources—enabling 
+              staff and employees to operate more efficiently and effectively.
             </p>
           </section>
 
@@ -40,18 +40,18 @@ const About: React.FC = () => {
             <div className={styles.valuesGrid}>
               <div className={styles.valueCard}>
                 <Lightbulb size={24} className={styles.valueIcon} />
-                <h3>Innovation in Education</h3>
-                <p>We continuously seek new ways to make learning more engaging and effective through technology.</p>
+                <h3>Operational Excellence</h3>
+                <p>We strive to deliver tools that enhance workplace productivity and simplify complex asset management workflows.</p>
               </div>
               <div className={styles.valueCard}>
                 <Zap size={24} className={styles.valueIcon} />
-                <h3>Practical Application</h3>
-                <p>We believe technology is best appreciated when applied to real-world challenges and scenarios.</p>
+                <h3>Collaborative Innovation</h3>
+                <p>We believe the best solutions come from understanding the daily challenges faced by our staff and employees.</p>
               </div>
               <div className={styles.valueCard}>
                 <Users size={24} className={styles.valueIcon} />
-                <h3>Seamless Accessibility</h3>
-                <p>We ensure everyone can access our platform anytime, anywhere, on any device.</p>
+                <h3>Workforce Empowerment</h3>
+                <p>We are committed to providing every team member with the tools they need to succeed in their roles.</p>
               </div>
             </div>
           </section>
@@ -63,9 +63,9 @@ const About: React.FC = () => {
               Our Mission
             </h2>
             <p className={styles.bodyText}>
-              To empower students through high-quality courseware and instructional materials 
-              that make learning an enjoyable journey. We strive to create an ecosystem where 
-              technology enhances education without overwhelming it.
+              To transform how organizations manage their IT infrastructure by delivering intuitive, powerful tools 
+              that your team will actually want to use. We aim to eliminate spreadsheets and manual tracking
+              replacing them with automation and real-time insights that empower your workforce.
             </p>
           </section>
 

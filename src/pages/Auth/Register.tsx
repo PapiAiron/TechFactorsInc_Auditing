@@ -45,100 +45,74 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className={styles.authPage}>
-      {/* Top Left Section - Logo and Tagline */}
-      <div className={styles.topLeftSection}>
-        <div className={styles.logo}>
-          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
-          <span className={styles.logoTech}>tech</span>
-          <span className={styles.logoFactors}>Factors</span>
-          <span className={styles.logoInc}>Inc</span>
-        </div>
-        <p className={styles.tagline}>Making Learning a Great Experience</p>
+    <div className={styles.authCard}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Create Account</h1>
+        <p className={styles.subtitle}>Start managing your IT infrastructure today</p>
       </div>
 
-      {/* Right Side - Auth Card */}
-      <div className={styles.authCard}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>Create Account</h1>
-          <p className={styles.subtitle}>Start managing your IT infrastructure today</p>
+      {error && (
+        <div className={styles.errorBox}>
+          <AlertCircle size={18} />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.field}>
+          <label className={styles.label}>Full Name</label>
+          <div className={styles.inputWrapper}>
+            <User className={styles.inputIcon} size={18} />
+            <input 
+              type="text" 
+              className={styles.input} 
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
         </div>
 
-        {error && (
-          <div className={styles.errorBox}>
-            <AlertCircle size={18} />
-            <span>{error}</span>
+        <div className={styles.field}>
+          <label className={styles.label}>Email Address</label>
+          <div className={styles.inputWrapper}>
+            <Mail className={styles.inputIcon} size={18} />
+            <input 
+              type="email" 
+              className={styles.input} 
+              placeholder="name@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-        )}
-
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.field}>
-            <label className={styles.label}>Full Name</label>
-            <div className={styles.inputWrapper}>
-              <User className={styles.inputIcon} size={18} />
-              <input 
-                type="text" 
-                className={styles.input} 
-                placeholder="John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Email Address</label>
-            <div className={styles.inputWrapper}>
-              <Mail className={styles.inputIcon} size={18} />
-              <input 
-                type="email" 
-                className={styles.input} 
-                placeholder="name@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Password</label>
-            <div className={styles.inputWrapper}>
-              <Lock className={styles.inputIcon} size={18} />
-              <input 
-                type="password" 
-                className={styles.input} 
-                placeholder="Min. 8 characters"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={8}
-              />
-            </div>
-          </div>
-
-          <button type="submit" className={styles.submitBtn} disabled={loading}>
-            {loading ? <Loader2 className={styles.spin} size={20} /> : 'Create Account'}
-          </button>
-        </form>
-
-        <p className={styles.footerText}>
-          Already have an account? <Link to="/login" className={styles.link}>Sign in instead</Link>
-        </p>
-      </div>
-
-      {/* Bottom Left Section - Mission and Vision */}
-      <div className={styles.bottomLeftSection}>
-        <div className={styles.missionVision}>
-          <h3>Mission</h3>
-          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
         </div>
-        <div className={styles.missionVision}>
-          <h3>Vision</h3>
-          <p>With TechFactors’ courseware, students are given the opportunity to appreciate the practical use of technology through modules, programs, workbooks, worksheets, instructional materials, teaching aids, and testing materials.</p>
+
+        <div className={styles.field}>
+          <label className={styles.label}>Password</label>
+          <div className={styles.inputWrapper}>
+            <Lock className={styles.inputIcon} size={18} />
+            <input 
+              type="password" 
+              className={styles.input} 
+              placeholder="Min. 8 characters"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={8}
+            />
+          </div>
         </div>
-      </div>
+
+        <button type="submit" className={styles.submitBtn} disabled={loading}>
+          {loading ? <Loader2 className={styles.spin} size={20} /> : 'Create Account'}
+        </button>
+      </form>
+
+      <p className={styles.footerText}>
+        Already have an account? <Link to="/login" className={styles.link}>Sign in instead</Link>
+      </p>
     </div>
   );
 };

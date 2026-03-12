@@ -24,11 +24,13 @@ const Landing: React.FC = () => {
       <main className={styles.main}>
         <section className={styles.hero}>
           <h1 className={styles.heroTitle}>
-            Enterprise IT Auditing <br />
-            <span className={styles.accent}>Simplified.</span>
+            Enterprise IT Asset <br />
+            <span className={styles.accent}>Management Simplified.</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, saepe animi? Quis ipsa placeat consequuntur enim eius. Maiores, quibusdam omnis? Necessitatibus provident illo, dolores aliquid quidem cumque aspernatur ex fuga!
+            Streamline your organization's IT infrastructure with powerful asset tracking, 
+            real-time auditing, and comprehensive analytics. Empower your team to manage 
+            technology resources with confidence and clarity.
           </p>
           <div className={styles.ctaGroup}>
             <button className={styles.getStartedBtn} onClick={() => navigate('/register')}>
@@ -41,19 +43,20 @@ const Landing: React.FC = () => {
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}><QrCode size={32} /></div>
             <h3>Smart Scanning</h3>
-            <p>Scan asset tags and barcodes directly from your mobile device or browser.</p>
+            <p>Scan asset tags and barcodes directly from your mobile device or browser for instant verification.</p>
           </div>
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}><ShieldCheck size={32} /></div>
             <h3>Compliance Ready</h3>
-            <p>Ensure your infrastructure meets all regulatory and security standards.</p>
+            <p>Maintain regulatory compliance with automated audit trails and detailed reporting capabilities.</p>
           </div>
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}><BarChart3 size={32} /></div>
             <h3>Deep Analytics</h3>
-            <p>Generate comprehensive reports on asset utilization and audit history.</p>
+            <p>Generate comprehensive reports on asset utilization, depreciation, and audit history.</p>
           </div>
         </section>
+
       </main>
 
       <footer className={styles.footer}>
