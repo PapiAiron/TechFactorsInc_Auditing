@@ -1,8 +1,7 @@
 .app {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  overflow: hidden;
   background: var(--bg);
 }
 
@@ -10,15 +9,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  margin-left: 230px; /* Offset for fixed sidebar */
+  margin-left: var(--sidebar-width); /* Offset for fixed sidebar */
 }
 
 .content {
   flex: 1;
-  overflow-y: auto;
-  padding: 20px;
+  padding: 100px 20px 20px; /* offset for fixed header on internal pages (70px height + 30px breathing room) */
   background: var(--bg);
+  box-sizing: border-box;
 }
 
 /* Tablet */
@@ -28,14 +26,14 @@
   }
   
   .content {
-    padding: 24px;
+    padding: 90px 24px 24px; /* 70px height + 20px breathing room */
   }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
   .content {
-    padding: 16px;
+    padding: 80px 16px 16px; /* 60px height + 20px breathing room */
   }
 }
 

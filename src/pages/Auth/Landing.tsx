@@ -10,7 +10,7 @@ const Landing: React.FC = () => {
     <div className={styles.landing}>
       <header className={styles.header}>
         <div className={styles.logo}>
-           <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
+          <img src='/src/public/img/logo.png' className={styles.imgLogo} alt="TechFactors Inc Logo" />
           <span className={styles.logoTech}>tech</span>
           <span className={styles.logoFactors}>Factors</span>
           <span className={styles.logoInc}>Inc</span>

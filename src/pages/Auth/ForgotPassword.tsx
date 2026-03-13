@@ -28,6 +28,13 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <div className={styles.authCard}>
+      <div style={{ marginBottom: '16px' }}>
+        <Link to="/login" className={styles.backToLoginBtn}>
+          <ArrowLeft size={18} />
+          <span>Back to Login</span>
+        </Link>
+      </div>
+      
       <div className={styles.header}>
         <h1 className={styles.title}>Reset Password</h1>
         <p className={styles.subtitle}>Enter your email to receive a password reset link</p>

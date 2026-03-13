@@ -1,21 +1,49 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import styles from '../../pages/Auth/Auth.module.css';
 import PageTransition from './PageTransition';
 
 const AuthLayout: React.FC = () => {
+  const location = useLocation();
+  
+  // Determine page indicator based on current route
+  const getPageIndicator = () => {
+    switch (location.pathname) {
+      case '/login':
+        return 'Sign In';
+      case '/register':
+        return 'SIGN UP';
+      case '/forgot-password':
+        return 'FORGOT PASSWORD';
+      default:
+        return 'LOG IN';
+    }
+  };
+
   return (
     <div className={styles.authPage}>
-      {/* Top Left Section - Logo and Tagline */}
-      <div className={styles.topLeftSection}>
-        <div className={styles.logo}>
-          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
-          <span className={styles.logoTech}>tech</span>
-          <span className={styles.logoFactors}>Factors</span>
-          <span className={styles.logoInc}>Inc</span>
+      {/* Responsive Top Bar */}
+      <header className={styles.authTopBar}>
+        <div className={styles.topBarLeft}>
+          <Link to="/" className={styles.backBtn} aria-label="Go Back">
+            <ArrowLeft size={20} />
+          </Link>
+          <div className={styles.branding}>
+           <div className={styles.logoTitleRow}>
+                <img src='/img/logo.png' alt="Logo" className={styles.miniLogo} />
+               <span className={styles.logoText}>
+                 tech<span className={styles.logoFactors}>Factors</span> Inc.
+               </span>
+             </div>
+            <p className={styles.tagline}>Making Learning a Great Experience</p>
+          </div>
         </div>
-        <p className={styles.tagline}>Making Learning a Great Experience</p>
-      </div>
+        
+        <div className={styles.topBarRight}>
+          <span className={styles.pageIndicator}>{getPageIndicator()}</span>
+        </div>
+      </header>
 
       {/* Transitioning Content */}
       <PageTransition>

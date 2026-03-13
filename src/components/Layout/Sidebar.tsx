@@ -25,7 +25,7 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
+export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const { assets } = useAssets();
   const { criticalCount } = useAlerts();
   const { logs } = useAuditLogs();
@@ -67,14 +67,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
     }
   ];
 
-  return (    
-    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
-      <div  className={styles.logo}>
-        <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
-        <span className={styles.logoTech}>tech</span>
-        <span className={styles.logoFactors}>Factors</span>
-        <span className={styles.logoInc}>Inc</span>
-      </div>
+  return (
+    <>
+      {/* semi-transparent overlay used on mobile/tablet when sidebar is open */}
+      {isOpen && onClose && <div className={styles.overlay} onClick={onClose} />}
+      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+        <div  className={styles.logo}>
+          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
+          <span className={styles.logoTech}>tech</span>
+          <span className={styles.logoFactors}>Factors</span>
+          <span className={styles.logoInc}>Inc</span>
+        </div>
 
       <nav className={styles.nav}>
         {navGroups.map((group, idx) => (
@@ -129,7 +132,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
         </div>
       </div>
     </aside>
+    </>
   );
 };
-
-export default Sidebar;

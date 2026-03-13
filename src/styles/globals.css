@@ -43,9 +43,18 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(10px);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(15px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Spacing variables */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --sidebar-width: 230px; /* used by sidebar & topbar offset */
 }
 
 /* Dark Theme (Default) */
@@ -82,12 +91,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-main);
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* padding-top removed; each page handles its own header offset via main or specific rules */
+}
+
+/* reset main to no extra padding; specific containers handle header offsets */
+main {
+  padding-top: 0;
 }
 
 button {
