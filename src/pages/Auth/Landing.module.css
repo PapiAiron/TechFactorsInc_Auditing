@@ -7,7 +7,8 @@
   position: relative;
   overflow: hidden;
   margin: 0;
-  padding: 0; /* ensure no body offset carries through */
+  padding: 0;
+  padding-top: 200px;
 }
 
 .landing::before {
@@ -83,6 +84,7 @@
 .loginBtn {
   padding: 10px 24px;
   font-weight: 600;
+  font-size: 18px;
   color: white;
   transition: all 0.3s ease;
   height: 44px;
@@ -208,6 +210,7 @@ main {
 
 .features {
   display: grid;
+  padding-top: 100px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   width: 100%;

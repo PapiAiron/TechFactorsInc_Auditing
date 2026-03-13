@@ -248,7 +248,7 @@
   min-height: 500px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(50px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 30px;
@@ -489,7 +489,7 @@
   text-align: center;
   margin-top: 32px;
   font-size: 14px;
-  color: var(--muted2);
+  color: white;
 }
 
 .link {
