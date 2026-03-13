@@ -42,9 +42,17 @@ const Dashboard: React.FC = () => {
     )},
     { key: 'tag', label: 'Tag', render: (val: string) => <span className={styles.mono}>{val}</span> },
     { key: 'category', label: 'Category' },
+
     { key: 'status', label: 'Status', render: (val: string) => (
-      <Badge variant={val === 'Active' ? 'green' : val === 'Low Stock' ? 'yellow' : 'red'}>{val}</Badge>
+      <Badge variant={
+        val === 'Active' || val === 'Complete' ? 'green' : 
+        val === 'Low Stock' ? 'yellow' : 
+        'red' // Defaulting others/Incomplete to Red
+      }>
+        {val}
+      </Badge>
     )},
+
     { key: 'lastAuditDate', label: 'Last Audited', render: (val: any) => formatDate(val) }
   ];
 

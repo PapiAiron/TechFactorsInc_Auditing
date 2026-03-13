@@ -8,13 +8,13 @@ import StatCard from '../../components/UI/StatCard';
 import styles from './Scanner.module.css';
 import { useAssets } from '../../hooks/useAssets';
 import { useScanSession } from '../../hooks/useScanSession';
+import { useSettings } from '../../hooks/useSettings';
 import { useAuth } from '../../context/AuthContext';
 import { assetService } from '../../services/assetService';
 import { alertService } from '../../services/alertService';
 import { ScanSession, Asset, AuditLog } from '../../types';
 import { collection, query, where, onSnapshot, Timestamp, orderBy, limit, doc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import { CATEGORIES } from '../../utils/constants';
 
 const Scanner: React.FC = () => {
   const [isCameraActive, setIsCameraActive] = useState(false);
@@ -29,8 +29,11 @@ const Scanner: React.FC = () => {
 
   const { assets } = useAssets();
   const { writeScanSession } = useScanSession();
+  const { settings } = useSettings();
   const { userData } = useAuth();
   const navigate = useNavigate();
+
+  const categories = settings?.categories || [];
 
   useEffect(() => {
     const today = new Date();
@@ -129,7 +132,7 @@ const Scanner: React.FC = () => {
       // Update the active audit log's itemsScanned count
       if (activeAudit) {
         // Check if asset is within scope if scope is a category
-        const isKnownCategory = CATEGORIES.includes(activeAudit.scope as any) || activeAudit.scope === 'All Assets';
+        const isKnownCategory = categories.includes(activeAudit.scope as any) || activeAudit.scope === 'All Assets';
         const isWithinScope = !isKnownCategory || 
                              activeAudit.scope === 'All Assets' || 
                              activeAudit.scope === matchedAsset.category;

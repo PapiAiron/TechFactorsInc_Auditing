@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/UI/Modal';
 import { assetService } from '../../services/assetService';
+import { useSettings } from '../../hooks/useSettings';
 import { Asset, AssetCategory, AssetStatus } from '../../types';
-import { CATEGORIES, ASSET_STATUSES } from '../../utils/constants';
+import { ASSET_STATUSES } from '../../utils/constants';
 import styles from './AddAssetModal.module.css';
 import { Trash2, RefreshCw } from 'lucide-react';
 
@@ -13,6 +14,9 @@ interface AddAssetModalProps {
 }
 
 const AddAssetModal: React.FC<AddAssetModalProps> = ({ isOpen, onClose, initialData }) => {
+  const { settings } = useSettings();
+  const categories = settings?.categories || [];
+
   const [formData, setFormData] = useState({
     name: '',
     tag: '',
@@ -142,7 +146,7 @@ const AddAssetModal: React.FC<AddAssetModalProps> = ({ isOpen, onClose, initialD
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value as AssetCategory })}
             >
-              {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+              {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
           </div>
         </div>

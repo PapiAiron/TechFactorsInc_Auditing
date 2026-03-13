@@ -5,7 +5,8 @@ export const CATEGORIES = [
   "Mobile",
   "Servers",
   "Printers",
-  "Peripherals"
+  "Peripherals",
+  "Bot"
 ] as const;
 
 export const ASSET_STATUSES = [
@@ -13,7 +14,9 @@ export const ASSET_STATUSES = [
   "Low Stock",
   "Flagged",
   "In Use",
-  "Maintenance"
+  "Maintenance",
+  "Complete",
+  "Incomplete"
 ] as const;
 
 export const AUDIT_STATUSES = [

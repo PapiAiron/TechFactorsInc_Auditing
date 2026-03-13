@@ -6,8 +6,8 @@ import LoadingSpinner from '../../components/UI/LoadingSpinner';
 import AddAssetModal from './AddAssetModal';
 import styles from './Assets.module.css';
 import { useAssets } from '../../hooks/useAssets';
+import { useSettings } from '../../hooks/useSettings';
 import { formatDate } from '../../utils/formatters';
-import { CATEGORIES } from '../../utils/constants';
 
 const Assets: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,10 +15,13 @@ const Assets: React.FC = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
 
+  const { settings } = useSettings();
   const { assets, loading } = useAssets({ 
     category: selectedCategory as any,
     searchQuery 
   });
+
+  const categories = settings?.categories || [];
 
   const columns = [
     { key: 'name', label: 'Asset Name', render: (val: string, row: any) => (
@@ -35,7 +38,12 @@ const Assets: React.FC = () => {
     { key: 'assignedTo', label: 'Assigned To' },
     { key: 'qty', label: 'Qty', align: 'center' as const },
     { key: 'status', label: 'Status', render: (val: string) => (
-      <Badge variant={val === 'Active' ? 'green' : val === 'Low Stock' ? 'yellow' : val === 'Flagged' ? 'red' : 'gray'}>
+      <Badge variant={
+        val === 'Active' || val === 'Complete' ? 'green' : 
+        val === 'Low Stock' ? 'yellow' : 
+        val === 'Flagged' || val === 'Incomplete' ? 'red' : 
+        'gray'
+      }>
         {val}
       </Badge>
     )},
@@ -70,35 +78,33 @@ const Assets: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.filters}>
-          <div className={styles.searchAndFilters}>
-            <div className={styles.searchBox}>
-              <Search size={18} className={styles.searchIcon} />
-              <input 
-                type="text" 
-                placeholder="Search by name, tag, or category..." 
-                className={styles.searchInput}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            
-            <div className={styles.categoryFilters}>
+          <div className={styles.searchBox}>
+            <Search size={18} className={styles.searchIcon} />
+            <input 
+              type="text" 
+              placeholder="Search by name, tag, or category..." 
+              className={styles.searchInput}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          
+          <div className={styles.categoryFilters}>
+            <button 
+              className={`${styles.filterBtn} ${selectedCategory === 'All' ? styles.active : ''}`}
+              onClick={() => setSelectedCategory('All')}
+            >
+              All
+            </button>
+            {categories.map(cat => (
               <button 
-                className={`${styles.filterBtn} ${selectedCategory === 'All' ? styles.active : ''}`}
-                onClick={() => setSelectedCategory('All')}
+                key={cat}
+                className={`${styles.filterBtn} ${selectedCategory === cat ? styles.active : ''}`}
+                onClick={() => setSelectedCategory(cat)}
               >
-                All
+                {cat}
               </button>
-              {CATEGORIES.map(cat => (
-                <button 
-                  key={cat}
-                  className={`${styles.filterBtn} ${selectedCategory === cat ? styles.active : ''}`}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../../components/UI/Modal';
 import { useUsers } from '../../hooks/useUsers';
 import { useAssets } from '../../hooks/useAssets';
+import { useSettings } from '../../hooks/useSettings';
 import { auditService } from '../../services/auditService';
-import { CATEGORIES } from '../../utils/constants';
 import styles from './NewAuditModal.module.css';
 
 interface NewAuditModalProps {
@@ -14,6 +14,9 @@ interface NewAuditModalProps {
 const NewAuditModal: React.FC<NewAuditModalProps> = ({ isOpen, onClose }) => {
   const { users } = useUsers();
   const { assets, loading: assetsLoading } = useAssets();
+  const { settings } = useSettings();
+  const categories = settings?.categories || [];
+
   const [scopeType, setScopeType] = useState<'Category' | 'Custom'>('Category');
   const [categoryScope, setCategoryScope] = useState('All Assets');
   const [customScope, setCustomScope] = useState('');
@@ -105,7 +108,7 @@ const NewAuditModal: React.FC<NewAuditModalProps> = ({ isOpen, onClose }) => {
               required
             >
               <option value="All Assets">All Assets</option>
-              {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+              {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
             </select>
           </div>
         ) : (
