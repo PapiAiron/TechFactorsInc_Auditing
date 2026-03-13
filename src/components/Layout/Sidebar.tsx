@@ -70,7 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
   return (    
     <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <div  className={styles.logo}>
-        <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
+        <img src='/img/logo.png' className={styles.imgLogo} />
         <span className={styles.logoTech}>tech</span>
         <span className={styles.logoFactors}>Factors</span>
         <span className={styles.logoInc}>Inc</span>
