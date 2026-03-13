@@ -57,10 +57,7 @@ const Login: React.FC = () => {
         </div>
 
         <div className={styles.field}>
-          <div className={styles.labelRow}>
-            <label className={styles.label}>Password</label>
-            <Link to="/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
-          </div>
+          <label className={styles.label}>Password</label>
           <div className={styles.inputWrapper}>
             <Lock className={styles.inputIcon} size={18} />
             <input 
@@ -71,6 +68,9 @@ const Login: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </div>
+          <div className={styles.fieldFooter}>
+            <Link to="/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
           </div>
         </div>
 

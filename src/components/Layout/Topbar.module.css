@@ -1,15 +1,20 @@
 .topbar {
   height: 70px;
-  background: var(--surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-top: 3px solid var(--accent);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
-  position: sticky;
+  padding: env(safe-area-inset-top) 32px 0 32px;
+  position: fixed;
   top: 0;
-  z-index: 90;
+  left: 0;
+  right: 0;
+  z-index: 100; /* below sidebar on desktop */
 }
 
 .menuBtn {
@@ -66,11 +71,22 @@
   }
 }
 
+/* Desktop layout: offset the bar by sidebar width so it never gets covered */
+@media (min-width: 1024px) {
+  .topbar {
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+  }
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   .topbar {
     padding: 0 16px;
     height: 60px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    z-index: 1000; /* below sidebar (2000) */
   }
   
   .title {

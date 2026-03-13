@@ -47,3 +47,71 @@
   color: var(--muted2);
   font-size: 14px;
 }
+
+/* Mobile card view styles */
+.mobileView {
+  display: none;
+}
+
+.mobileCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileCard {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 11px;
+  padding: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  /* subtle top highlight for glassmorphism effect */
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.mobileCard:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.2);
+}
+
+.mobileCardRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.mobileCardRow:last-child {
+  margin-bottom: 0;
+}
+
+.mobileCardLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+}
+
+.mobileCardValue {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Responsive design */
+@media (max-width: 767px) {
+  .desktopView {
+    display: none;
+  }
+  
+  .mobileView {
+    display: block;
+  }
+}

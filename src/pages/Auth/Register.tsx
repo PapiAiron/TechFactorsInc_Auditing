@@ -10,6 +10,7 @@ const Register: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -18,6 +19,14 @@ const Register: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -59,49 +68,69 @@ const Register: React.FC = () => {
       )}
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.field}>
-          <label className={styles.label}>Full Name</label>
-          <div className={styles.inputWrapper}>
-            <User className={styles.inputIcon} size={18} />
-            <input 
-              type="text" 
-              className={styles.input} 
-              placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+        <div className={styles.fieldRow}>
+          <div className={styles.field}>
+            <label className={styles.label}>Full Name</label>
+            <div className={styles.inputWrapper}>
+              <User className={styles.inputIcon} size={18} />
+              <input 
+                type="text" 
+                className={styles.input} 
+                placeholder="Full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.field}>
+            <label className={styles.label}>Email Address</label>
+            <div className={styles.inputWrapper}>
+              <Mail className={styles.inputIcon} size={18} />
+              <input 
+                type="email" 
+                className={styles.input} 
+                placeholder="name@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
           </div>
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label}>Email Address</label>
-          <div className={styles.inputWrapper}>
-            <Mail className={styles.inputIcon} size={18} />
-            <input 
-              type="email" 
-              className={styles.input} 
-              placeholder="name@company.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+        <div className={styles.fieldRow}>
+          <div className={styles.field}>
+            <label className={styles.label}>Password</label>
+            <div className={styles.inputWrapper}>
+              <Lock className={styles.inputIcon} size={18} />
+              <input 
+                type="password" 
+                className={styles.input} 
+                placeholder="Min. 8 characters"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={8}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className={styles.field}>
-          <label className={styles.label}>Password</label>
-          <div className={styles.inputWrapper}>
-            <Lock className={styles.inputIcon} size={18} />
-            <input 
-              type="password" 
-              className={styles.input} 
-              placeholder="Min. 8 characters"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={8}
-            />
+          <div className={styles.field}>
+            <label className={styles.label}>Confirm Password</label>
+            <div className={styles.inputWrapper}>
+              <Lock className={styles.inputIcon} size={18} />
+              <input 
+                type="password" 
+                className={styles.input} 
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                minLength={8}
+              />
+            </div>
           </div>
         </div>
 

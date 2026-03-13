@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Sidebar from './components/Layout/Sidebar';
+import Sidebar from './components/Layout/Sidebar.tsx';
 import Topbar from './components/Layout/Topbar';
 import styles from './App.module.css';
 import NewAuditModal from './pages/AuditLogs/NewAuditModal';

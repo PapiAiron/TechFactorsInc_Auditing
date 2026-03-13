@@ -63,10 +63,13 @@
 }
 
 .card {
-  background: var(--surface);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 11px;
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease-in-out;
 }
 
 .cardHeader {
