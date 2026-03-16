@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 
-export type AssetCategory = "Laptops" | "Monitors" | "Networking" | "Mobile" | "Servers" | "Printers" | "Peripherals";
-export type AssetStatus = "Active" | "Low Stock" | "Flagged" | "In Use" | "Maintenance";
+export type AssetCategory = string;
+export type AssetStatus = "Active" | "Low Stock" | "Flagged" | "In Use" | "Maintenance" | "Complete" | "Incomplete";
 
 export interface Asset {
   id: string;
@@ -92,6 +92,7 @@ export interface Settings {
   companyName: string;
   itEmail: string;
   tagPrefix: string;
+  categories: string[];
   fiscalYearStart: string;
   notifications: {
     emailAlerts: boolean;

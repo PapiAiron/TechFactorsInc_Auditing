@@ -9,6 +9,8 @@
   margin: 0;
   padding: 0;
   padding-top: 200px;
+  margin: 0;
+  padding: 0; /* ensure no body offset carries through */
 }
 
 .landing::before {
@@ -140,11 +142,12 @@ main {
 }
 
 .heroTitle {
+  padding: 100px;
   font-size: clamp(48px, 8vw, 72px);
   line-height: 1.1;
   color: white;
   font-weight: 900;
-  margin-bottom: 24px;
+  margin-bottom: 5px;
   letter-spacing: -2px;
 }
 

@@ -97,6 +97,7 @@ export const seedAll = async () => {
     companyName: "TechFactors Inc.",
     itEmail: "it-support@techfactors.com",
     tagPrefix: "IT-",
+    categories: ["Laptops", "Monitors", "Networking", "Mobile", "Servers", "Printers", "Peripherals", "Bots"],
     fiscalYearStart: "2024-01-01",
     notifications: {
       emailAlerts: true,

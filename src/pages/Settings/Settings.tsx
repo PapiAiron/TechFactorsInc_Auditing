@@ -8,11 +8,12 @@ import {
   Database,
   CheckCircle2,
   User as UserIcon,
-  Info
+  Layers,
+  Trash2,
+  Plus
 } from 'lucide-react';
 import Toggle from '../../components/UI/Toggle';
 import LoadingSpinner from '../../components/UI/LoadingSpinner';
-import About from './About';
 import styles from './Settings.module.css';
 import { useSettings } from '../../hooks/useSettings';
 import { useAuth } from '../../context/AuthContext';
@@ -32,6 +33,7 @@ const Settings: React.FC = () => {
     displayName: '',
     email: '',
   });
+  const [newCategory, setNewCategory] = useState('');
 
   useEffect(() => {
     if (userData) {
@@ -69,13 +71,31 @@ const Settings: React.FC = () => {
   };
 
   const tabs = [
-    { id: 'About', icon: <Info size={18} /> },
     { id: 'Account', icon: <UserIcon size={18} /> },
     { id: 'General', icon: <SettingsIcon size={18} /> },
+    { id: 'Categories', icon: <Layers size={18} /> },
     { id: 'Notifications', icon: <Bell size={18} /> },
     { id: 'Security', icon: <Shield size={18} /> },
     { id: 'Audit Rules', icon: <ClipboardList size={18} /> },
   ];
+
+  const handleAddCategory = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newCategory.trim() || !settings) return;
+    if (settings.categories.includes(newCategory.trim())) {
+      alert('Category already exists');
+      return;
+    }
+    updateSettings({ categories: [...settings.categories, newCategory.trim()] });
+    setNewCategory('');
+  };
+
+  const handleRemoveCategory = (cat: string) => {
+    if (!settings) return;
+    if (window.confirm(`Are you sure you want to remove the "${cat}" category?`)) {
+      updateSettings({ categories: settings.categories.filter(c => c !== cat) });
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -101,19 +121,16 @@ const Settings: React.FC = () => {
         </aside>
 
         <main className={styles.content}>
-          {activeTab === 'About' ? (
-            <About />
-          ) : (
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <h2 className={styles.cardTitle}>{activeTab} Settings</h2>
-                <button className={styles.saveBtn} onClick={handleSave}>
-                  {saveSuccess ? <CheckCircle2 size={18} /> : <Save size={18} />}
-                  <span>{saveSuccess ? 'Saved!' : 'Save Changes'}</span>
-                </button>
-              </div>
+          <div className={styles.card}>
+            <div className={styles.cardHeader}>
+              <h2 className={styles.cardTitle}>{activeTab} Settings</h2>
+              <button className={styles.saveBtn} onClick={handleSave}>
+                {saveSuccess ? <CheckCircle2 size={18} /> : <Save size={18} />}
+                <span>{saveSuccess ? 'Saved!' : 'Save Changes'}</span>
+              </button>
+            </div>
 
-              <div className={styles.cardBody}>
+            <div className={styles.cardBody}>
               {activeTab === 'Account' && (
                 <div className={styles.form}>
                   <div className={styles.profileHeader}>
@@ -202,6 +219,43 @@ const Settings: React.FC = () => {
                       </button>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {activeTab === 'Categories' && (
+                <div className={styles.form}>
+                  <p className={styles.fieldHint} style={{ marginBottom: '16px' }}>
+                    Manage asset categories available across the system.
+                  </p>
+                  
+                  <div className={styles.categoryList}>
+                    {settings.categories.map(cat => (
+                      <div key={cat} className={styles.categoryItem}>
+                        <span className={styles.categoryName}>{cat}</span>
+                        <button 
+                          className={styles.removeBtn}
+                          onClick={() => handleRemoveCategory(cat)}
+                          title="Remove category"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <form className={styles.addCategoryForm} onSubmit={handleAddCategory}>
+                    <input 
+                      type="text" 
+                      className={`${styles.input} ${styles.addCategoryInput}`}
+                      placeholder="New category name..."
+                      value={newCategory}
+                      onChange={(e) => setNewCategory(e.target.value)}
+                    />
+                    <button type="submit" className={styles.addCategoryBtn}>
+                      <Plus size={16} />
+                      <span>Add</span>
+                    </button>
+                  </form>
                 </div>
               )}
 
@@ -296,7 +350,6 @@ const Settings: React.FC = () => {
               )}
             </div>
           </div>
-          )}
         </main>
       </div>
     </div>

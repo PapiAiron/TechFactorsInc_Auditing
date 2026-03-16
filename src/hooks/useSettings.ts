@@ -14,6 +14,7 @@ export const useSettings = () => {
       companyName: "TechFactors Inc.",
       itEmail: "support@techfactors.com",
       tagPrefix: "TF-",
+      categories: ["Laptops", "Monitors", "Networking", "Mobile", "Servers", "Printers", "Peripherals", "Bots"],
       fiscalYearStart: new Date().toISOString().split('T')[0],
       notifications: {
         emailAlerts: true,
