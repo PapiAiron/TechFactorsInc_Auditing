@@ -31,9 +31,9 @@ const AuthLayout: React.FC = () => {
           </Link>
           <div className={styles.branding}>
            <div className={styles.logoTitleRow}>
-                <img src='/img/logo.png' alt="Logo" className={styles.miniLogo} />
+                <img src='src/public/img/logo.png' alt="Logo" className={styles.miniLogo} />
                <span className={styles.logoText}>
-                 tech<span className={styles.logoFactors}>Factors</span> Inc.
+                 <span className={styles.logoTech}>tech</span><span className={styles.logoFactors}>Factors</span>Inc.
                </span>
              </div>
             <p className={styles.tagline}>Making Learning a Great Experience</p>
