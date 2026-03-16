@@ -73,7 +73,8 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       {isOpen && onClose && <div className={styles.overlay} onClick={onClose} />}
       <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <div  className={styles.logo}>
-          <img src='/src/public/img/logo.png' className={styles.imgLogo}></img>
+         <img src='/img/logo.png' className={styles.imgLogo}>
+          </img>
           <span className={styles.logoTech}>tech</span>
           <span className={styles.logoFactors}>Factors</span>
           <span className={styles.logoInc}>Inc</span>
